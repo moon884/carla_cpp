@@ -66,7 +66,10 @@ import glob
 import os
 import sys
 
-try:
+try:# 使用glob.glob查找符合特定模式的Carla库的.egg文件
+    # 模式字符串中会结合Python主版本号（sys.version_info.major）、次版本号（sys.version_info.minor）
+    # 以及根据操作系统（os.name判断）确定的后缀（win-amd64或linux-x86_64）来构建文件名模式
+    # 然后取找到的第一个匹配文件的路径（列表中的[0]元素）添加到sys.path
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
